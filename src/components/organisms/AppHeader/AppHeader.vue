@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import HeadlineXS from '@/components/atoms/Typography/HeadlineXS.vue'
-import { useDisplay } from 'vuetify'
 
 const { t } = useI18n()
-const { mobile } = useDisplay()
 </script>
 <template>
   <v-app-bar>
-    <HeadlineXS v-if="!mobile">{{ t('app-name') }}</HeadlineXS>
+    <HeadlineXS>{{ t('app-name') }}</HeadlineXS>
   </v-app-bar>
 </template>

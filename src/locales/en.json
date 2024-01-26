@@ -2,5 +2,17 @@
   "app-name": "Projekt magisterski",
   "common": {
     "ok": "OK"
+  },
+  "errors": {
+    "field-is-empty": "Field can't be empty",
+    "email-validation": "Invalid email address format",
+    "password-validation": {
+      "length-error": "The password must have at least 8 characters",
+      "lowercase-error": "The password must contain at least one lowercase letter",
+      "non-alphanumeric-error": "The password must contain at least one special character",
+      "number-error": "The password must contain at least one digit",
+      "passwords-dont-match": "Passwords don't match",
+      "uppercase-error": "The password must contain at least one capital letter"
+    }
   }
 }

@@ -2,5 +2,17 @@
   "app-name": "Projekt magisterski",
   "common": {
     "ok": "OK"
+  },
+  "errors": {
+    "field-is-empty": "Pole nie może być puste",
+    "email-validation": "Nieprawidłowy format adresu email",
+    "password-validation": {
+      "length-error": "Hasło musi zawierać przynajmniej 8 znaków",
+      "lowercase-error": "Hasło musi zawierać przynajmniej jedną małą literę",
+      "non-alphanumeric-error": "Hasło musi zawierać przynajmniej jeden znak specjalny",
+      "number-error": "Hasło musi zawierać przynajmniej jedną cyfrę",
+      "passwords-dont-match": "Hasła się nie zgadzają",
+      "uppercase-error": "Hasło musi zawierać przynajmniej jedną dużą literę"
+    }
   }
 }

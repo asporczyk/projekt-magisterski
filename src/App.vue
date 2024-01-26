@@ -5,7 +5,7 @@ import AppHeader from '@/components/organisms/AppHeader/AppHeader.vue'
 <template>
   <v-app>
     <AppHeader />
-    <v-main>
+    <v-main class="d-flex align-center justify-center">
       <RouterView />
     </v-main>
   </v-app>

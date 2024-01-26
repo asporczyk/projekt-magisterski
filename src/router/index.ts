@@ -8,10 +8,25 @@ const router = createRouter({
       name: 'landing page',
       component: () => import('@/views/LandingPage/LandingPage.vue'),
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/LoginView/Login.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/RegisterView/Register.vue'),
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot password',
+      component: () => import('@/views/ForgotPasswordView/ForgotPassword.vue'),
+    },
     // error 404
     {
       path: '/:pathMatch(.*)',
-      component: () => import('@/views/NotFoundView/NotFoundView.vue'),
+      component: () => import('@/views/NotFoundView/NotFound.vue'),
     },
   ],
 })
