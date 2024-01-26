@@ -30,7 +30,6 @@ const { handleSubmit, values } = useForm<LoginFields>({
 
 const handleLogin = handleSubmit(() => {
   // TODO handle login user
-  console.log(values.email)
 })
 
 const handleGoToRegister = () => {
