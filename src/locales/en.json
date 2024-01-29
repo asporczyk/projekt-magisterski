@@ -13,6 +13,7 @@
       "number-error": "The password must contain at least one digit",
       "passwords-dont-match": "Passwords don't match",
       "uppercase-error": "The password must contain at least one capital letter"
-    }
+    },
+    "unexpected-error": "An unexpected error occurred. Try again, if the error still occurs contact technical support."
   }
 }

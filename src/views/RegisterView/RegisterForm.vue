@@ -2,11 +2,13 @@
 import { useI18n } from 'vue-i18n'
 import { object, ref as yupRef, string } from 'yup'
 import { useForm } from 'vee-validate'
-import BasicBox from '@/components/atoms/BasicBox/BasicBox.vue'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import TextFieldWithValidation from '@/components/atoms/TextFieldWithValidation/TextFieldWithValidation.vue'
-import router from '@/router'
-import LinkButton from '@/components/atoms/Buttons/LinkButton.vue'
+import { useQuery } from '@tanstack/vue-query'
+import { register } from '@/api/AccountApi'
+import FullscreenLoader from '@/components/molecules/FullscreenLoader/FullscreenLoader.vue'
+import ResponseModal from '@/components/modals/ResponseModal.vue'
+import { ref, watch } from 'vue'
 
 const { t } = useI18n()
 
@@ -38,44 +40,73 @@ const schema = object({
     ),
 })
 
-const { handleSubmit } = useForm<RegisterFields>({
+const emit = defineEmits<{
+  register: []
+}>()
+
+const { handleSubmit, values } = useForm<RegisterFields>({
   validationSchema: schema,
 })
 
-const handleRegister = handleSubmit(() => {
-  //TODO handle register user
+const openErrorModal = ref(false)
+
+const {
+  refetch: postRegister,
+  isSuccess,
+  isError,
+  isFetching,
+} = useQuery({
+  queryKey: ['register'],
+  queryFn: async () =>
+    await register({
+      email: values.email,
+      password: values.password,
+      login: values.email,
+    }),
+  enabled: false,
 })
 
-const handleGoToLogin = () => {
-  router.push({ name: 'login' })
-}
+const handleRegister = handleSubmit(() => postRegister())
+
+watch(isSuccess, () => {
+  if (isSuccess.value && !isFetching.value) {
+    emit('register')
+  }
+})
+
+watch(isError, () => {
+  if (isError.value && !isFetching.value) {
+    openErrorModal.value = true
+  }
+})
 </script>
 <template>
-  <BasicBox class="pa-5" width="360px">
-    <v-form @submit="handleRegister">
-      <TextFieldWithValidation name="email" :label="t('form.email')" />
-      <TextFieldWithValidation
-        name="password"
-        :label="t('form.password')"
-        type="password"
-      />
-      <TextFieldWithValidation
-        name="repPassword"
-        :label="t('form.rep-password')"
-        type="password"
-      />
-      <TextButton variant="primary" full-width type="submit">{{
-        t('sign-up')
-      }}</TextButton>
-      <LinkButton full-width @click="handleGoToLogin">
-        {{ t('already-have-account') }}
-      </LinkButton>
-    </v-form>
-  </BasicBox>
+  <v-form @submit="handleRegister">
+    <TextFieldWithValidation name="email" :label="t('form.email')" />
+    <TextFieldWithValidation
+      name="password"
+      :label="t('form.password')"
+      type="password"
+    />
+    <TextFieldWithValidation
+      name="repPassword"
+      :label="t('form.rep-password')"
+      type="password"
+    />
+    <TextButton variant="primary" full-width type="submit">{{
+      t('sign-up')
+    }}</TextButton>
+  </v-form>
+  <FullscreenLoader :is-loading="isFetching" />
+  <ResponseModal
+    v-model="openErrorModal"
+    :body="t('errors.unexpected-error')"
+    variant="negative"
+    @on-close="openErrorModal = false"
+  />
 </template>
 <i18n>{
   "en": {
-    "already-have-account": "Already have account? Sing in!",
     "form": {
       "email": "Email address",
       "password": "Password",
@@ -84,7 +115,6 @@ const handleGoToLogin = () => {
     "sign-up": "Sign up"
   },
   "pl": {
-    "already-have-account": "Masz już konto? Zaloguj się!",
     "form": {
       "email": "Adres email",
       "password": "Hasło",

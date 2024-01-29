@@ -13,7 +13,7 @@ defineEmits(['on-close'])
 const { t } = useI18n()
 </script>
 <template>
-  <CenteredModal @on-close="$emit('on-close')">
+  <CenteredModal @on-close="$emit('on-close')" maxWidth="500px">
     <template #title>
       <div
         v-if="variant === 'positive'"

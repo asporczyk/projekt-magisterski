@@ -13,6 +13,7 @@
       "number-error": "Hasło musi zawierać przynajmniej jedną cyfrę",
       "passwords-dont-match": "Hasła się nie zgadzają",
       "uppercase-error": "Hasło musi zawierać przynajmniej jedną dużą literę"
-    }
+    },
+    "unexpected-error": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie, jeśli błąd będzie nadal występował skontaktuj się z pomocą techniczną."
   }
 }
