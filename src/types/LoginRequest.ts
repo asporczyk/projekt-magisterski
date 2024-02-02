@@ -1,4 +1,4 @@
 interface LoginType {
-  login: string
+  email: string
   password: string
 }
