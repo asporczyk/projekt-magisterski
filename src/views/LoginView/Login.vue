@@ -4,16 +4,18 @@ import BasicBox from '@/components/atoms/BasicBox/BasicBox.vue'
 import LinkButton from '@/components/atoms/Buttons/LinkButton.vue'
 import router from '@/router'
 import { useI18n } from 'vue-i18n'
+import { useAccountStore } from '@/stores/account'
 
 const { t } = useI18n()
+const accountStore = useAccountStore()
 
 const handleGoToRegister = () => {
   router.push({ name: 'register' })
 }
 
 const handleLogin = (token: string) => {
-  // TODO MGR-44
-  console.log(token)
+  accountStore.loginUser(token)
+  router.push({ name: 'home' })
 }
 </script>
 <template>
