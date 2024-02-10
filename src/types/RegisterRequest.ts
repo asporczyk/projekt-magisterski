@@ -1,4 +1,4 @@
-interface RegisterType {
+interface RegisterRequest {
   email: string
   password: string
 }

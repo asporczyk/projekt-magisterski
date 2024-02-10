@@ -44,11 +44,11 @@ const emit = defineEmits<{
   register: []
 }>()
 
+const openErrorModal = ref<boolean>(false)
+
 const { handleSubmit, values } = useForm<RegisterFields>({
   validationSchema: schema,
 })
-
-const openErrorModal = ref(false)
 
 const {
   refetch: postRegister,
@@ -57,12 +57,10 @@ const {
   isFetching,
 } = useQuery({
   queryKey: ['register'],
-  queryFn: async () =>
-    await register({
-      email: values.email,
-      password: values.password,
-      login: values.email,
-    }),
+  queryFn: async () => {
+    const { email, password } = values
+    await register({ email, password })
+  },
   enabled: false,
 })
 

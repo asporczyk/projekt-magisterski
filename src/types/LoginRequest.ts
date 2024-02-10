@@ -1,4 +1,4 @@
-interface LoginType {
+interface LoginRequest {
   email: string
   password: string
 }
