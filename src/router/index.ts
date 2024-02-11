@@ -55,9 +55,28 @@ const router = createRouter({
       component: () => import('@/views/HomeView/Home.vue'),
       beforeEnter: checkAuthentication,
     },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/SettingsView/Settings.vue'),
+      beforeEnter: checkAuthentication,
+    },
+    {
+      path: '/sharing',
+      name: 'sharing',
+      component: () => import('@/views/SharingView/Sharing.vue'),
+      beforeEnter: checkAuthentication,
+    },
+    {
+      path: '/measurement/:type',
+      name: 'measurement',
+      component: () => import('@/views/MeasurementView/Measurement.vue'),
+      beforeEnter: checkAuthentication,
+    },
     // error 404
     {
       path: '/:pathMatch(.*)',
+      name: 'not found',
       component: () => import('@/views/NotFoundView/NotFound.vue'),
     },
   ],
