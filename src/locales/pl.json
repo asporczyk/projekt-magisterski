@@ -3,6 +3,15 @@
   "common": {
     "ok": "OK"
   },
+  "measurements": {
+    "blood-oxygen-level": "Nasycenie krwi tlenem",
+    "blood-pressure": "Ciśnienie krwi",
+    "blood-sugar": "Cukier we krwi",
+    "heart-rate": "Tętno",
+    "mental-health": "Stan psychiczny",
+    "sleep": "Sen",
+    "temperature": "Temperatura"
+  },
   "errors": {
     "field-is-empty": "Pole nie może być puste",
     "email-validation": "Nieprawidłowy format adresu email",

@@ -3,6 +3,15 @@
   "common": {
     "ok": "OK"
   },
+  "measurements": {
+    "blood-oxygen-level": "Blood oxygen level",
+    "blood-pressure": "Blood pressure",
+    "blood-sugar": "Blood sugar",
+    "heart-rate": "Heart rate",
+    "mental-health": "Mental health",
+    "sleep": "Sleep",
+    "temperature": "Temperature"
+  },
   "errors": {
     "field-is-empty": "Field can't be empty",
     "email-validation": "Invalid email address format",

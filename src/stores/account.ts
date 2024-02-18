@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useJwt } from '@vueuse/integrations/useJwt'
+import router from '@/router'
 
 export const useAccountStore = defineStore('account', () => {
   const isUserAuthorized = ref<boolean>(false)
@@ -13,6 +14,7 @@ export const useAccountStore = defineStore('account', () => {
   function logoutUser() {
     localStorage.removeItem('token')
     isUserAuthorized.value = false
+    router.replace({ name: 'login' })
   }
 
   function checkTokenValidity() {

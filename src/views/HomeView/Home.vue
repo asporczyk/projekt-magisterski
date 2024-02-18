@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import TextButton from '@/components/atoms/Buttons/TextButton.vue'
-import { useAccountStore } from '@/stores/account'
-import router from '@/router'
+import { useI18n } from 'vue-i18n'
+import HeadlineL from '@/components/atoms/Typography/HeadlineL.vue'
+import MeasurementsGrid from '@/views/HomeView/MeasurementsGrid/MeasurementsGrid.vue'
+import { AvailableMeasurements } from '@/const/AvailableMeasurements'
 
-const accountStore = useAccountStore()
-
-const handleLogout = () => {
-  accountStore.logoutUser()
-  router.replace({ name: 'login' })
-}
+const { t } = useI18n()
 </script>
 <template>
-  <div>
-    <h1>TODO MGR-5 Ekran główny</h1>
-    <TextButton @click="handleLogout">Wyloguj</TextButton>
+  <div class="d-flex flex-column h-100">
+    <HeadlineL>{{ t('welcome') }}</HeadlineL>
+    <MeasurementsGrid :items="AvailableMeasurements" />
   </div>
 </template>
+<i18n>
+  {
+    "en": {
+      "welcome": "Hello, how are you feeling today? Enter measurements."
+    },
+    "pl": {
+      "welcome": "Dzień dobry, jak się dziś czujesz? Wprowadź pomiary."
+    }
+  }
+</i18n>
