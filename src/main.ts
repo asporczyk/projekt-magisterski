@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createI18n } from 'vue-i18n'
+import { createI18n, useI18n } from 'vue-i18n'
 
 import App from './App.vue'
 import router from './router'
@@ -13,8 +13,20 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import { VueQueryPlugin } from '@tanstack/vue-query'
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+
+export const i18n = createI18n({
+  legacy: false,
+  globalInjection: true,
+  fallbackLocale: 'en',
+  locale: navigator.language,
+  messages,
+})
 
 const vuetify = createVuetify({
+  locale: {
+    adapter: createVueI18nAdapter({ i18n, useI18n }),
+  },
   components,
   directives,
   theme: {
@@ -27,14 +39,6 @@ const vuetify = createVuetify({
       mdi,
     },
   },
-})
-
-export const i18n = createI18n({
-  legacy: false,
-  globalInjection: true,
-  fallbackLocale: 'en',
-  locale: navigator.language,
-  messages,
 })
 
 createApp(App)

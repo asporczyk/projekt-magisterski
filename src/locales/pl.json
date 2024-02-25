@@ -1,16 +1,14 @@
 {
+  "$vuetify": {
+    "dataFooter": {
+      "itemsPerPageText": "Elementów na stronie:",
+      "itemsPerPageAll": "Wszystkie",
+      "pageText": "{0}-{1} z {2}"
+    }
+  },
   "app-name": "Projekt magisterski",
   "common": {
     "ok": "OK"
-  },
-  "measurements": {
-    "blood-oxygen-level": "Nasycenie krwi tlenem",
-    "blood-pressure": "Ciśnienie krwi",
-    "blood-sugar": "Cukier we krwi",
-    "heart-rate": "Tętno",
-    "mental-health": "Stan psychiczny",
-    "sleep": "Sen",
-    "temperature": "Temperatura"
   },
   "errors": {
     "field-is-empty": "Pole nie może być puste",
@@ -24,5 +22,28 @@
       "uppercase-error": "Hasło musi zawierać przynajmniej jedną dużą literę"
     },
     "unexpected-error": "Wystąpił nieoczekiwany błąd. Spróbuj ponownie, jeśli błąd będzie nadal występował skontaktuj się z pomocą techniczną."
+  },
+  "measurements": {
+    "descriptions": {
+      "blood-pressure": "Ciśnienie krwi to siła wywierana przez krążącą krew na ściany naczyń krwionośnych. Składa się z dwóch wartości: skurczowego (górny) i rozkurczowego (dolny). Skurczowe to ciśnienie krwi w momencie, gdy serce pompuje krew do tętnic, natomiast rozkurczowe to ciśnienie krwi w momencie odpoczynku serca między skurczami. Jest mierzona w milimetrach słupa rtęci (mmHg). Optymalne ciśnienie krwi wynosi zazwyczaj około 120/80 mmHg. Wysokie ciśnienie krwi (nadciśnienie) może prowadzić do poważnych problemów zdrowotnych, takich jak choroby serca, nerek czy mózgu, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie."
+    },
+    "names": {
+      "blood-oxygen-level": "Nasycenie krwi tlenem",
+      "blood-pressure": "Ciśnienie krwi",
+      "blood-sugar": "Cukier we krwi",
+      "heart-rate": "Tętno",
+      "mental-health": "Stan psychiczny",
+      "sleep": "Sen",
+      "temperature": "Temperatura"
+    },
+    "units": {
+      "blood-oxygen-level": "%",
+      "blood-pressure": "mmHg",
+      "blood-sugar": "mg/dL",
+      "heart-rate": "ud./min",
+      "mental-health": "",
+      "sleep": "h",
+      "temperature": "°C"
+    }
   }
 }

@@ -13,7 +13,7 @@ const { t } = useI18n()
     <v-row>
       <Tile
         v-for="item in items"
-        :title="t(`measurements.${item.name}`)"
+        :title="t(`measurements.names.${item.name}`)"
         :subtitle="t('click-here')"
         :icon="item.icon"
         :color="item.color"
