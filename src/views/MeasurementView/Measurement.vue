@@ -63,7 +63,8 @@ const mock = [
     <MeasurementModal
       v-model="isAddMeasurementModalOpen"
       :measurement-type="measurementType"
-      @onClose="isAddMeasurementModalOpen = false"
+      @close="isAddMeasurementModalOpen = false"
+      @success="isAddMeasurementModalOpen = false"
     />
   </div>
 </template>

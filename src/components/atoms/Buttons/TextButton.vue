@@ -2,6 +2,7 @@
 defineProps<{
   fullWidth?: boolean
   variant?: 'primary' | 'secondary' | 'positive'
+  loading?: boolean
 }>()
 </script>
 <template>
@@ -14,6 +15,7 @@ defineProps<{
     "
     class="my-2"
     :variant="variant === 'secondary' ? 'tonal' : 'elevated'"
+    :loading="loading"
   >
     <slot />
   </v-btn>

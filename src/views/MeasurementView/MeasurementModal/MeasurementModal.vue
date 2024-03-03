@@ -10,13 +10,14 @@ defineProps<{
 }>()
 
 defineEmits<{
-  onClose: []
+  close: []
+  success: []
 }>()
 
 const { t } = useI18n()
 </script>
 <template>
-  <CenteredModal @on-close="$emit('onClose')">
+  <CenteredModal @on-close="$emit('close')">
     <template #title>
       <HeadlineS>{{ t('add-measurement') }}</HeadlineS>
     </template>
@@ -24,10 +25,12 @@ const { t } = useI18n()
       <BasicMeasurementForm
         v-if="measurementType !== 'blood-pressure'"
         :measurement-type="measurementType"
+        @success="$emit('success')"
       />
       <BloodPressureMeasurementForm
         v-else-if="measurementType === 'blood-pressure'"
         :measurement-type="measurementType"
+        @success="$emit('success')"
       />
     </template>
   </CenteredModal>
