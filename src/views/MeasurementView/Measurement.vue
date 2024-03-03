@@ -8,11 +8,17 @@ import { useRoute } from 'vue-router'
 import MeasurementTitleWithIcon from '@/views/MeasurementView/MeasurementTitleWithIcon.vue'
 import MeasurementDescription from '@/views/MeasurementView/MeasurementDescription.vue'
 import MeasurementDataTable from '@/views/MeasurementView/MeasurementDataTable.vue'
+import MeasurementModal from '@/views/MeasurementView/MeasurementModal/MeasurementModal.vue'
+import { AvailableMeasurements } from '@/const/AvailableMeasurements'
+import TextBody from '@/components/atoms/Typography/TextBody.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const route = useRoute()
 
 const measurementType = ref<MeasurementType>()
 const isInvalidMeasurementType = ref<boolean>(false)
+const isAddMeasurementModalOpen = ref<boolean>(false)
 
 onMounted(() => {
   const type = route.params.type.toString()
@@ -44,8 +50,20 @@ const mock = [
     <MeasurementTitleWithIcon :measurement-type="measurementType" />
     <MeasurementDescription :measurement-type="measurementType" />
     <MeasurementDataTable
+      v-if="
+        !AvailableMeasurements.find(
+          (measurement) => measurement.name === measurementType,
+        )?.notYetImplemented
+      "
       :measurement-type="measurementType"
       :measurementData="mock"
+      @addMeasurement="isAddMeasurementModalOpen = true"
+    />
+    <TextBody v-else>{{ t('common.not-yet-implemented') }}</TextBody>
+    <MeasurementModal
+      v-model="isAddMeasurementModalOpen"
+      :measurement-type="measurementType"
+      @onClose="isAddMeasurementModalOpen = false"
     />
   </div>
 </template>

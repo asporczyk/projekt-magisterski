@@ -4,4 +4,5 @@ export interface MeasurementItem {
   name: MeasurementType
   color: string
   icon: string
+  notYetImplemented?: boolean
 }

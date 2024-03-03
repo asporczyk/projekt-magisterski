@@ -10,6 +10,10 @@ const { measurementType, measurementData } = defineProps<{
   measurementData: any[]
 }>()
 
+defineEmits<{
+  addMeasurement: []
+}>()
+
 const { t } = useI18n()
 const date = useDate()
 
@@ -32,7 +36,12 @@ let headers = ref([
 <template>
   <div class="d-flex align-center">
     <HeadlineS>{{ t('list-of-measurements') }}</HeadlineS>
-    <TextButtonWithIcon icon="mdi-plus" class="ml-auto" variant="positive">
+    <TextButtonWithIcon
+      icon="mdi-plus"
+      class="ml-auto"
+      variant="positive"
+      @click="$emit('addMeasurement')"
+    >
       {{ t('add-measurement') }}
     </TextButtonWithIcon>
   </div>

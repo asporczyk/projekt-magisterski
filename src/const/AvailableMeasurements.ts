@@ -15,6 +15,7 @@ export const AvailableMeasurements: MeasurementItem[] = [
     name: 'blood-oxygen-level',
     color: 'green-lighten-4',
     icon: 'mdi-heart-pulse',
+    notYetImplemented: true,
   },
   {
     name: 'temperature',
@@ -25,15 +26,18 @@ export const AvailableMeasurements: MeasurementItem[] = [
     name: 'mental-health',
     color: 'purple-lighten-4',
     icon: 'mdi-emoticon-happy',
+    notYetImplemented: true,
   },
   {
     name: 'sleep',
     color: 'blue-grey-lighten-4',
     icon: 'mdi-sleep',
+    notYetImplemented: true,
   },
   {
     name: 'blood-sugar',
     color: 'amber-lighten-4',
     icon: 'mdi-blood-bag',
+    notYetImplemented: true,
   },
 ]

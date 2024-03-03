@@ -7,6 +7,7 @@ const props = defineProps<{
   type?: string
   label: string
   loading?: boolean
+  unit?: string
 }>()
 
 const field = useField(() => props.name, undefined)
@@ -35,5 +36,6 @@ const passwordVisible = ref(false)
     :type="type ?? 'text'"
     :loading="loading ?? false"
     rounded="lg"
+    :suffix="unit"
   />
 </template>

@@ -8,6 +8,7 @@
   },
   "app-name": "Projekt magisterski",
   "common": {
+    "not-yet-implemented": "Not yet implemented",
     "ok": "OK"
   },
   "errors": {

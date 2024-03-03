@@ -8,6 +8,7 @@
   },
   "app-name": "Projekt magisterski",
   "common": {
+    "not-yet-implemented": "Funkcjonalność jeszcze niezaimplementowana",
     "ok": "OK"
   },
   "errors": {
@@ -25,7 +26,13 @@
   },
   "measurements": {
     "descriptions": {
-      "blood-pressure": "Ciśnienie krwi to siła wywierana przez krążącą krew na ściany naczyń krwionośnych. Składa się z dwóch wartości: skurczowego (górny) i rozkurczowego (dolny). Skurczowe to ciśnienie krwi w momencie, gdy serce pompuje krew do tętnic, natomiast rozkurczowe to ciśnienie krwi w momencie odpoczynku serca między skurczami. Jest mierzona w milimetrach słupa rtęci (mmHg). Optymalne ciśnienie krwi wynosi zazwyczaj około 120/80 mmHg. Wysokie ciśnienie krwi (nadciśnienie) może prowadzić do poważnych problemów zdrowotnych, takich jak choroby serca, nerek czy mózgu, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie."
+      "blood-oxygen-level": "Nasycenie krwi tlenem to procentowa ilość hemoglobiny w czerwonych krwinkach, która jest nasycona tlenem. Jest to ważny wskaźnik zdrowia, ponieważ tlen jest niezbędny do prawidłowego funkcjonowania organizmu. Wartość nasycenia krwi tlenem powinna wynosić od 95 do 100%. Wartości poniżej 90% mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "blood-pressure": "Ciśnienie krwi to siła wywierana przez krążącą krew na ściany naczyń krwionośnych. Składa się z dwóch wartości: skurczowego (górny) i rozkurczowego (dolny). Skurczowe to ciśnienie krwi w momencie, gdy serce pompuje krew do tętnic, natomiast rozkurczowe to ciśnienie krwi w momencie odpoczynku serca między skurczami. Jest mierzona w milimetrach słupa rtęci (mmHg). Optymalne ciśnienie krwi wynosi zazwyczaj około 120/80 mmHg. Wysokie ciśnienie krwi (nadciśnienie) może prowadzić do poważnych problemów zdrowotnych, takich jak choroby serca, nerek czy mózgu, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "blood-sugar": "Cukier we krwi to ilość glukozy obecnej we krwi. Jest to ważny wskaźnik zdrowia, ponieważ glukoza jest głównym źródłem energii dla organizmu. Wartość cukru we krwi powinna wynosić od 70 do 100 mg/dL na czczo. Wartości poza tym zakresem mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "heart-rate": "Tętno to liczba uderzeń serca na minutę. Jest to ważny wskaźnik zdrowia serca. Wartość tętna zależy od wieku, płci, poziomu aktywności fizycznej, stanu zdrowia, czy też przyjmowanych leków. U osób dorosłych tętno w spoczynku wynosi zazwyczaj od 60 do 100 uderzeń na minutę. Wartości tętna poza tym zakresem mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "mental-health": "Stan psychiczny to ogólny stan zdrowia psychicznego. Jest to ważny wskaźnik zdrowia, ponieważ zdrowie psychiczne wpływa na funkcjonowanie organizmu. Wartość stanu psychicznego powinna być jak najwyższa. Wartości poza tym zakresem mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "sleep": "Sen to naturalny stan odpoczynku organizmu. Jest to ważny wskaźnik zdrowia, ponieważ sen wpływa na funkcjonowanie organizmu. Wartość snu powinna wynosić od 7 do 9 godzin. Wartości poza tym zakresem mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie.",
+      "temperature": "Temperatura ciała to ilość ciepła wytwarzanego przez organizm. Jest to ważny wskaźnik zdrowia, ponieważ temperatura ciała wpływa na funkcjonowanie organizmu. Wartość temperatury ciała powinna wynosić od 36,5 do 37,2°C. Wartości poza tym zakresem mogą świadczyć o problemach zdrowotnych, dlatego ważne jest monitorowanie go i utrzymanie na odpowiednim poziomie."
     },
     "names": {
       "blood-oxygen-level": "Nasycenie krwi tlenem",
