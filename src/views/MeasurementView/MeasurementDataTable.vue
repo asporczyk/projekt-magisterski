@@ -2,34 +2,43 @@
 import { useI18n } from 'vue-i18n'
 import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
 import HeadlineS from '@/components/atoms/Typography/HeadlineS.vue'
-import { useDate } from 'vuetify'
-import { ref } from 'vue'
+import { computed } from 'vue'
 
-const { measurementType, measurementData } = defineProps<{
+interface MeasurementDataTableProps {
   measurementType: string
-  measurementData: any[]
-}>()
+  measurementData: MeasurementListItem[]
+  loading?: boolean
+}
+
+const props = defineProps<MeasurementDataTableProps>()
 
 defineEmits<{
   addMeasurement: []
 }>()
 
 const { t } = useI18n()
-const date = useDate()
 
-const items = measurementData.map((item) => ({
-  ...item,
-  timestamp: date.format(item.timestamp, 'fullDateWithWeekday'),
-}))
-
-let headers = ref([
+let headers = computed(() => [
   {
     title: t('headers.date'),
     value: 'timestamp',
+    key: 'timestamp',
   },
-  {
-    title: `${t('headers.value')} (${t(`measurements.units.${measurementType}`)})`,
+  props.measurementType !== 'blood-pressure' && {
+    title: `${t('headers.value')} (${t(`measurements.units.${props.measurementType}`)})`,
     value: 'value',
+  },
+  props.measurementType === 'blood-pressure' && {
+    title: `${t('headers.systolic')} (${t(`measurements.units.${props.measurementType}`)})`,
+    value: 'systolic',
+  },
+  props.measurementType === 'blood-pressure' && {
+    title: `${t('headers.diastolic')} (${t(`measurements.units.${props.measurementType}`)})`,
+    value: 'diastolic',
+  },
+  props.measurementType === 'blood-pressure' && {
+    title: `${t('headers.heart-rate')} (${t(`measurements.units.heart-rate`)})`,
+    value: 'heartRate',
   },
 ])
 </script>
@@ -45,7 +54,11 @@ let headers = ref([
       {{ t('add-measurement') }}
     </TextButtonWithIcon>
   </div>
-  <v-data-table :items="items" :headers="headers" />
+  <v-data-table
+    :items="measurementData"
+    :headers="headers"
+    :loading="loading"
+  />
 </template>
 <i18n>
 {
@@ -54,6 +67,9 @@ let headers = ref([
     "list-of-measurements": "Lista pomiarów",
     "headers": {
       "date": "Data",
+      "diastolic": "Rozkurczowe",
+      "heart-rate": "Tętno",
+      "systolic": "Skurczowe",
       "value": "Pomiar"
     }
   },
@@ -62,6 +78,9 @@ let headers = ref([
     "list-of-measurements": "List of measurements",
     "headers": {
       "date": "Date",
+      "diastolic": "Diastolic",
+      "heart-rate": "Heart rate",
+      "systolic": "Systolic",
       "value": "Measurement"
     }
   }

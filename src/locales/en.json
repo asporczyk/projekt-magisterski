@@ -4,6 +4,12 @@
       "itemsPerPageText": "Items per page:",
       "itemsPerPageAll": "All",
       "pageText": "{0}-{1} z {2}"
+    },
+    "noDataText": "No data available",
+    "dataIterator": {
+      "loadingText": "Loading items...",
+      "noResultsText": "No matching records found",
+      "pageText": "{0}-{1} of {2}"
     }
   },
   "app-name": "Projekt magisterski",

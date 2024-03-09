@@ -40,7 +40,7 @@ const {
   isSuccess,
   isError,
   isFetching,
-} = useQuery<MeasurementsListResponse>({
+} = useQuery<MeasurementDto>({
   queryKey: ['postBloodPressureMeasurementData'],
   queryFn: async () => {
     const data: BloodPressureMeasurementPostRequest = {

@@ -10,4 +10,6 @@ const instance = axios.create({
 })
 
 export const postHeartRate = async (data: BasicMeasurementPostRequest) =>
-  await instance.post<MeasurementsListResponse>('', data)
+  await instance.post<MeasurementDto[]>('', data)
+
+export const getHeartRate = async () => await instance.get<MeasurementDto[]>('')

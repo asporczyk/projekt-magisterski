@@ -10,4 +10,7 @@ const instance = axios.create({
 })
 
 export const postTemperature = async (data: BasicMeasurementPostRequest) =>
-  await instance.post<MeasurementsListResponse>('', data)
+  await instance.post<MeasurementDto[]>('', data)
+
+export const getTemperature = async () =>
+  await instance.get<MeasurementDto[]>('')

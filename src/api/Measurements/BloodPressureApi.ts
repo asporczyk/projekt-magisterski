@@ -11,4 +11,7 @@ const instance = axios.create({
 
 export const postBloodPressure = async (
   data: BloodPressureMeasurementPostRequest,
-) => await instance.post<MeasurementsListResponse>('', data)
+) => await instance.post<MeasurementDto[]>('', data)
+
+export const getBloodPressure = async () =>
+  await instance.get<MeasurementDto[]>('')

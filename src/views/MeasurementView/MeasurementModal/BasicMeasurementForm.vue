@@ -41,7 +41,7 @@ const {
   isSuccess,
   isError,
   isFetching,
-} = useQuery<MeasurementsListResponse>({
+} = useQuery<MeasurementDto[]>({
   queryKey: ['postBasicMeasurementData'],
   queryFn: async () => {
     const data: BasicMeasurementPostRequest = {

@@ -4,7 +4,13 @@
       "itemsPerPageText": "Elementów na stronie:",
       "itemsPerPageAll": "Wszystkie",
       "pageText": "{0}-{1} z {2}"
-    }
+    },
+    "dataIterator": {
+      "pageText": "{0}-{1} z {2}",
+      "noResultsText": "Nie znaleziono pasujących rekordów",
+      "loadingText": "Ładowanie danych..."
+    },
+    "noDataText": "Brak danych"
   },
   "app-name": "Projekt magisterski",
   "common": {

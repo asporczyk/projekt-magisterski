@@ -1,0 +1,1 @@
+type MeasurementDto = Measurement | BloodPressureMeasurement

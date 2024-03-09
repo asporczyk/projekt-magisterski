@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import {
   isMeasurementType,
   type MeasurementType,
@@ -12,9 +12,17 @@ import MeasurementModal from '@/views/MeasurementView/MeasurementModal/Measureme
 import { AvailableMeasurements } from '@/const/AvailableMeasurements'
 import TextBody from '@/components/atoms/Typography/TextBody.vue'
 import { useI18n } from 'vue-i18n'
+import { useQuery } from '@tanstack/vue-query'
+import { getHeartRate } from '@/api/Measurements/HeartRateApi'
+import { getTemperature } from '@/api/Measurements/TemperatureApi'
+import { getBloodPressure } from '@/api/Measurements/BloodPressureApi'
+import { useMeasurementsStore } from '@/stores/measurements'
+import { storeToRefs } from 'pinia'
 
 const { t } = useI18n()
 const route = useRoute()
+const measurementsStore = useMeasurementsStore()
+const { measurementsList } = storeToRefs(measurementsStore)
 
 const measurementType = ref<MeasurementType>()
 const isInvalidMeasurementType = ref<boolean>(false)
@@ -29,21 +37,28 @@ onMounted(() => {
   }
 
   measurementType.value = type
+  measurementsStore.resetMeasurementsList()
 })
 
-const mock = [
-  { id: 1, timestamp: new Date(), value: 100 },
-  { id: 2, timestamp: new Date(), value: 200 },
-  { id: 3, timestamp: new Date(), value: 300 },
-  { id: 4, timestamp: new Date(), value: 400 },
-  { id: 5, timestamp: new Date(), value: 500 },
-  { id: 6, timestamp: new Date(), value: 600 },
-  { id: 7, timestamp: new Date(), value: 700 },
-  { id: 8, timestamp: new Date(), value: 800 },
-  { id: 9, timestamp: new Date(), value: 900 },
-  { id: 10, timestamp: new Date(), value: 1000 },
-  { id: 11, timestamp: new Date(), value: 100 },
-]
+const { data, isFetching } = useQuery<MeasurementDto[]>({
+  queryKey: ['getMeasurements'],
+  queryFn: async () => {
+    switch (measurementType.value) {
+      case 'heart-rate':
+        return await getHeartRate().then((res) => res.data)
+      case 'temperature':
+        return await getTemperature().then((res) => res.data)
+      case 'blood-pressure':
+        return await getBloodPressure().then((res) => res.data)
+      default:
+        throw new Error('Invalid measurement type')
+    }
+  },
+})
+
+watch(data, () => {
+  measurementsStore.setMeasurementsList(data.value ?? [])
+})
 </script>
 <template>
   <div class="d-flex flex-column w-75" v-if="!isInvalidMeasurementType">
@@ -56,7 +71,8 @@ const mock = [
         )?.notYetImplemented
       "
       :measurement-type="measurementType"
-      :measurementData="mock"
+      :measurementData="measurementsList"
+      :loading="isFetching"
       @addMeasurement="isAddMeasurementModalOpen = true"
     />
     <TextBody v-else>{{ t('common.not-yet-implemented') }}</TextBody>
