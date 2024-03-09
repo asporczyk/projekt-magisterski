@@ -18,29 +18,42 @@ defineEmits<{
 
 const { t } = useI18n()
 
-let headers = computed(() => [
-  {
-    title: t('headers.date'),
-    value: 'timestamp',
-    key: 'timestamp',
-  },
-  props.measurementType !== 'blood-pressure' && {
-    title: `${t('headers.value')} (${t(`measurements.units.${props.measurementType}`)})`,
-    value: 'value',
-  },
-  props.measurementType === 'blood-pressure' && {
-    title: `${t('headers.systolic')} (${t(`measurements.units.${props.measurementType}`)})`,
-    value: 'systolic',
-  },
-  props.measurementType === 'blood-pressure' && {
-    title: `${t('headers.diastolic')} (${t(`measurements.units.${props.measurementType}`)})`,
-    value: 'diastolic',
-  },
-  props.measurementType === 'blood-pressure' && {
-    title: `${t('headers.heart-rate')} (${t(`measurements.units.heart-rate`)})`,
-    value: 'heartRate',
-  },
-])
+let headers = computed(() => {
+  const headers = [
+    {
+      title: t('headers.date'),
+      value: 'timestamp',
+      key: 'timestamp',
+    },
+  ]
+
+  if (props.measurementType !== 'blood-pressure') {
+    headers.push({
+      title: `${t('headers.value')} (${t(`measurements.units.${props.measurementType}`)})`,
+      value: 'value',
+      key: 'value',
+    })
+  }
+
+  if (props.measurementType === 'blood-pressure') {
+    headers.push({
+      title: `${t('headers.systolic')} (${t(`measurements.units.${props.measurementType}`)})`,
+      value: 'systolic',
+      key: 'systolic',
+    })
+    headers.push({
+      title: `${t('headers.diastolic')} (${t(`measurements.units.${props.measurementType}`)})`,
+      value: 'diastolic',
+      key: 'diastolic',
+    })
+    headers.push({
+      title: `${t('headers.heart-rate')} (${t(`measurements.units.heart-rate`)})`,
+      value: 'heartRate',
+      key: 'heartRate',
+    })
+  }
+  return headers
+})
 </script>
 <template>
   <div class="d-flex align-center">

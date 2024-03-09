@@ -24,7 +24,7 @@ const route = useRoute()
 const measurementsStore = useMeasurementsStore()
 const { measurementsList } = storeToRefs(measurementsStore)
 
-const measurementType = ref<MeasurementType>()
+const measurementType = ref<MeasurementType>('unknown')
 const isInvalidMeasurementType = ref<boolean>(false)
 const isAddMeasurementModalOpen = ref<boolean>(false)
 
