@@ -1,14 +1,43 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import HeadlineL from '@/components/atoms/Typography/HeadlineL.vue'
-import MeasurementsGrid from '@/views/HomeView/MeasurementsGrid/MeasurementsGrid.vue'
+import MeasurementsGrid from '@/views/HomeView/MeasurementsGrid.vue'
 import { AvailableMeasurements } from '@/const/AvailableMeasurements'
 import StickyFloatingButton from '@/components/atoms/Buttons/StickyFloatingButton.vue'
+import { ref } from 'vue'
+import ShareModal from '@/views/HomeView/ShareModal.vue'
+import { useQuery } from '@tanstack/vue-query'
+import { postShareData } from '@/api/ShareApi'
 
 const { t } = useI18n()
 
+const isOpenShareModal = ref<boolean>(false)
+
+const {
+  data,
+  isFetching: isShareLinkFetching,
+  isError,
+  refetch: postShare,
+} = useQuery<ShareDto>({
+  queryKey: ['postShareData'],
+  queryFn: async () => {
+    const data: SharePostRequest = {
+      minutesToExpire: 30,
+      shareSensitiveData: true,
+      shareBloodPressureMeasurement: true,
+      shareHeartRateMeasurement: true,
+      shareTemperatureMeasurement: true,
+      shareBloodSugarMeasurement: true,
+    }
+
+    return await postShareData(data).then((res) => res.data)
+  },
+  enabled: false,
+})
+
 const handleOpenShare = () => {
-  console.log('open share')
+  postShare()
+  isOpenShareModal.value = true
 }
 </script>
 <template>
@@ -16,6 +45,14 @@ const handleOpenShare = () => {
     <HeadlineL>{{ t('welcome') }}</HeadlineL>
     <MeasurementsGrid :items="AvailableMeasurements" />
     <StickyFloatingButton icon="mdi-share" @click="handleOpenShare" />
+    <ShareModal
+      v-model="isOpenShareModal"
+      :token="data?.token"
+      :is-loading="isShareLinkFetching"
+      :is-error="isError"
+      @close="isOpenShareModal = false"
+      @refetch="postShare"
+    />
   </div>
 </template>
 <i18n>

@@ -5,13 +5,14 @@ defineProps<{
   fullWidth?: boolean
   variant?: 'primary' | 'secondary' | 'positive' | 'negative'
   icon: string
+  forceText?: boolean
 }>()
 
 const { mobile } = useDisplay()
 </script>
 <template>
   <v-btn
-    v-if="!mobile"
+    v-if="!mobile || forceText"
     :max-width="!fullWidth ? '300px' : ''"
     :width="fullWidth ? '100%' : ''"
     rounded="lg"
