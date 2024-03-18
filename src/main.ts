@@ -14,6 +14,7 @@ import '@mdi/font/css/materialdesignicons.css'
 import messages from '@intlify/unplugin-vue-i18n/messages'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+import { VFab } from 'vuetify/labs/components'
 
 export const i18n = createI18n({
   legacy: false,
@@ -27,7 +28,10 @@ const vuetify = createVuetify({
   locale: {
     adapter: createVueI18nAdapter({ i18n, useI18n }),
   },
-  components,
+  components: {
+    ...components,
+    VFab,
+  },
   directives,
   theme: {
     defaultTheme: localStorage.getItem('theme') ?? 'light',
