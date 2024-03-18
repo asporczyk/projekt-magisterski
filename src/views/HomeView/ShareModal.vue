@@ -3,11 +3,12 @@ import CenteredModal from '@/components/organisms/CenteredModal/CenteredModal.vu
 import HeadlineS from '@/components/atoms/Typography/HeadlineS.vue'
 import { useI18n } from 'vue-i18n'
 import ProgressCircular from '@/components/atoms/ProgressCircular/ProgressCircular.vue'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
 import TextBody from '@/components/atoms/Typography/TextBody.vue'
 import TextButton from '@/components/atoms/Buttons/TextButton.vue'
+import { useQRCode } from '@vueuse/integrations/useQRCode'
 
 interface ShareModalProps {
   token: string
@@ -25,6 +26,8 @@ defineEmits<{
 const { t } = useI18n()
 const router = useRouter()
 
+let QRCode = ref('')
+
 const url = computed(() => {
   const route = router.resolve({
     name: 'home',
@@ -32,6 +35,10 @@ const url = computed(() => {
   })
 
   return new URL(route.href, window.location.origin).href
+})
+
+watch(url, () => {
+  QRCode = useQRCode(url.value)
 })
 
 const copyLink = () => {
@@ -53,6 +60,7 @@ const copyLink = () => {
       </div>
       <div v-else-if="url" class="d-flex flex-column align-center">
         <TextBody>{{ t('link-created') }}</TextBody>
+        <img :src="QRCode" alt="QR Code" />
         <TextButtonWithIcon
           icon="mdi-content-copy"
           variant="secondary"

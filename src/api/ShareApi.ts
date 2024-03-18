@@ -1,13 +1,6 @@
-import axios from 'axios'
+import { instanceWithToken } from '@/api/interceptors'
 
-const BASE_URL = 'https://safemed-api.azurewebsites.net/api/share'
-
-const instance = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
-  },
-})
+const BASE_URL = '/share'
 
 export const postShareData = async (data: SharePostRequest) =>
-  await instance.post<ShareDto>('share-data', data)
+  await instanceWithToken.post<ShareDto>(`${BASE_URL}/share-data`, data)

@@ -1,15 +1,9 @@
-import axios from 'axios'
+import { instanceWithToken } from '@/api/interceptors'
 
-const BASE_URL = 'https://safemed-api.azurewebsites.net/api/heart-rate'
-
-const instance = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('token')}`,
-  },
-})
+const BASE_URL = '/heart-rate'
 
 export const postHeartRate = async (data: BasicMeasurementPostRequest) =>
-  await instance.post<MeasurementDto[]>('', data)
+  await instanceWithToken.post<MeasurementDto[]>(BASE_URL, data)
 
-export const getHeartRate = async () => await instance.get<MeasurementDto[]>('')
+export const getHeartRate = async () =>
+  await instanceWithToken.get<MeasurementDto[]>(BASE_URL)
