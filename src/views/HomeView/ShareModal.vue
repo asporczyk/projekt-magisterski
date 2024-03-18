@@ -11,7 +11,7 @@ import TextButton from '@/components/atoms/Buttons/TextButton.vue'
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 
 interface ShareModalProps {
-  token: string
+  token: string | undefined
   isLoading: boolean
   isError: boolean
 }
@@ -29,12 +29,15 @@ const router = useRouter()
 let QRCode = ref('')
 
 const url = computed(() => {
-  const route = router.resolve({
-    name: 'home',
-    query: { token: props.token },
-  })
+  if (props.token) {
+    const route = router.resolve({
+      name: 'home',
+      query: { token: props?.token },
+    })
 
-  return new URL(route.href, window.location.origin).href
+    return new URL(route.href, window.location.origin).href
+  }
+  return ''
 })
 
 watch(url, () => {
