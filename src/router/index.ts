@@ -2,7 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAccountStore } from '@/stores/account'
 import { storeToRefs } from 'pinia'
 
-const checkAuthentication = () => {
+const checkAuthentication = (to: any) => {
+  const guestToken = to.query.token
+  if (guestToken) {
+    localStorage.setItem('guestToken', guestToken)
+  }
+
   const accountStore = useAccountStore()
   const { isUserAuthorized } = storeToRefs(accountStore)
 

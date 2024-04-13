@@ -15,7 +15,9 @@ export const instanceWithToken = axios.create({
 instanceWithToken.interceptors.request.use((config) => {
   accountStore.checkTokenValidity()
   if (isUserAuthorized.value) {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+    const savedToken =
+      localStorage.getItem('guestToken') || localStorage.getItem('token')
+    config.headers.Authorization = `Bearer ${savedToken}`
 
     return config
   }

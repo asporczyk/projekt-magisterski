@@ -8,8 +8,12 @@ import { ref } from 'vue'
 import ShareModal from '@/views/HomeView/ShareModal.vue'
 import { useQuery } from '@tanstack/vue-query'
 import { postShareData } from '@/api/ShareApi'
+import { useAccountStore } from '@/stores/account'
+import { storeToRefs } from 'pinia'
 
 const { t } = useI18n()
+const accountStore = useAccountStore()
+const { isGuest } = storeToRefs(accountStore)
 
 const isOpenShareModal = ref<boolean>(false)
 
@@ -42,9 +46,13 @@ const handleOpenShare = () => {
 </script>
 <template>
   <div class="d-flex flex-column h-100">
-    <HeadlineL>{{ t('welcome') }}</HeadlineL>
+    <HeadlineL>{{ isGuest ? t('welcome-guest') : t('welcome') }}</HeadlineL>
     <MeasurementsGrid :items="AvailableMeasurements" />
-    <StickyFloatingButton icon="mdi-share" @click="handleOpenShare" />
+    <StickyFloatingButton
+      v-if="!isGuest"
+      icon="mdi-share"
+      @click="handleOpenShare"
+    />
     <ShareModal
       v-model="isOpenShareModal"
       :token="data?.token"
@@ -58,10 +66,12 @@ const handleOpenShare = () => {
 <i18n>
   {
     "en": {
-      "welcome": "Hello, how are you feeling today? Enter measurements."
+      "welcome": "Hello, how are you feeling today? Enter measurements.",
+      "welcome-guest": "Hello, check shared measurements."
     },
     "pl": {
-      "welcome": "Dzień dobry, jak się dziś czujesz? Wprowadź pomiary."
+      "welcome": "Dzień dobry, jak się dziś czujesz? Wprowadź pomiary.",
+      "welcome-guest": "Dzień dobry, sprawdź udostępnione pomiary."
     }
   }
 </i18n>

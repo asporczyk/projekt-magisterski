@@ -3,6 +3,8 @@ import { useI18n } from 'vue-i18n'
 import TextButtonWithIcon from '@/components/atoms/Buttons/TextButtonWithIcon.vue'
 import HeadlineS from '@/components/atoms/Typography/HeadlineS.vue'
 import { computed } from 'vue'
+import { useAccountStore } from '@/stores/account'
+import { storeToRefs } from 'pinia'
 
 interface MeasurementDataTableProps {
   measurementType: string
@@ -17,6 +19,8 @@ defineEmits<{
 }>()
 
 const { t } = useI18n()
+const accountStore = useAccountStore()
+const { isGuest } = storeToRefs(accountStore)
 
 let headers = computed(() => {
   const headers = [
@@ -59,6 +63,7 @@ let headers = computed(() => {
   <div class="d-flex align-center">
     <HeadlineS>{{ t('list-of-measurements') }}</HeadlineS>
     <TextButtonWithIcon
+      v-if="!isGuest"
       icon="mdi-plus"
       class="ml-auto"
       variant="positive"

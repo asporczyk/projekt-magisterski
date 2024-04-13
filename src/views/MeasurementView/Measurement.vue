@@ -18,11 +18,19 @@ import { getTemperature } from '@/api/Measurements/TemperatureApi'
 import { getBloodPressure } from '@/api/Measurements/BloodPressureApi'
 import { useMeasurementsStore } from '@/stores/measurements'
 import { storeToRefs } from 'pinia'
+import { useAccountStore } from '@/stores/account'
+import {
+  getSharedBloodPressure,
+  getSharedHeartRate,
+  getSharedTemperature,
+} from '@/api/ShareApi'
 
 const { t } = useI18n()
 const route = useRoute()
 const measurementsStore = useMeasurementsStore()
 const { measurementsList } = storeToRefs(measurementsStore)
+const accountStore = useAccountStore()
+const { isGuest } = storeToRefs(accountStore)
 
 const measurementType = ref<MeasurementType>('unknown')
 const isInvalidMeasurementType = ref<boolean>(false)
@@ -45,11 +53,17 @@ const { data, isFetching } = useQuery<MeasurementDto[]>({
   queryFn: async () => {
     switch (measurementType.value) {
       case 'heart-rate':
-        return await getHeartRate().then((res) => res.data)
+        return await (
+          isGuest.value ? getSharedHeartRate() : getHeartRate()
+        ).then((res) => res.data)
       case 'temperature':
-        return await getTemperature().then((res) => res.data)
+        return await (
+          isGuest.value ? getSharedTemperature() : getTemperature()
+        ).then((res) => res.data)
       case 'blood-pressure':
-        return await getBloodPressure().then((res) => res.data)
+        return await (
+          isGuest.value ? getSharedBloodPressure() : getBloodPressure()
+        ).then((res) => res.data)
       default:
         throw new Error('Invalid measurement type')
     }

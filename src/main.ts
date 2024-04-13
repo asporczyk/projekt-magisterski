@@ -21,6 +21,8 @@ export const i18n = createI18n({
   globalInjection: true,
   fallbackLocale: 'en',
   locale: navigator.language,
+  missingWarn: false,
+  fallbackWarn: false,
   messages,
 })
 
