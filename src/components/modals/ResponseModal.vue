@@ -13,7 +13,15 @@ defineEmits(['on-close'])
 const { t } = useI18n()
 </script>
 <template>
-  <CenteredModal @on-close="$emit('on-close')" maxWidth="500px">
+  <CenteredModal
+    @on-close="$emit('on-close')"
+    maxWidth="500px"
+    :aria-label="
+      title ?? variant === 'positive'
+        ? t('default-success-title')
+        : t('default-error-title')
+    "
+  >
     <template #title>
       <div
         v-if="variant === 'positive'"

@@ -17,7 +17,7 @@ defineEmits<{
 const { t } = useI18n()
 </script>
 <template>
-  <CenteredModal @on-close="$emit('close')">
+  <CenteredModal @on-close="$emit('close')" :aria-label="t('add-measurement')">
     <template #title>
       <HeadlineS>{{ t('add-measurement') }}</HeadlineS>
     </template>

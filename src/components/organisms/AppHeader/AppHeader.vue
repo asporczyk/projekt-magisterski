@@ -17,10 +17,9 @@ const { isUserAuthorized } = storeToRefs(accountStore)
         v-if="isUserAuthorized"
         icon="mdi-logout"
         variant="negative"
+        :label="t('logout')"
         @click="accountStore.logoutUser()"
-      >
-        {{ t('logout') }}
-      </TextButtonWithIcon>
+      />
     </template>
   </v-app-bar>
 </template>

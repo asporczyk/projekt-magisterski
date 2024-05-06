@@ -1,8 +1,8 @@
 <script setup lang="ts">
-defineProps<{ icon: string }>()
+defineProps<{ icon: string; label: string }>()
 </script>
 <template>
-  <v-fab :icon="icon" size="x-large" class="sticky" />
+  <v-fab :icon="icon" size="x-large" class="sticky" :aria-label="label" />
 </template>
 <style scoped>
 .sticky {

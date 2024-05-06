@@ -16,7 +16,7 @@ defineEmits(['on-close'])
       :max-width="maxWidth"
     >
       <div class="position-absolute align-self-end">
-        <IconButton icon="mdi-close" @click="$emit('on-close')" />
+        <IconButton icon="mdi-close" @click="$emit('on-close')" label="close" />
       </div>
       <div class="d-flex flex-column align-center fill-height px-lg-5">
         <HeadlineM class="mx-2 my-2 text-center">

@@ -37,5 +37,6 @@ const passwordVisible = ref(false)
     :loading="loading ?? false"
     rounded="lg"
     :suffix="unit"
+    :aria-label="label"
   />
 </template>

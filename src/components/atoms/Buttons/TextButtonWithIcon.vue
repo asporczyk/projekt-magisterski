@@ -6,6 +6,7 @@ defineProps<{
   variant?: 'primary' | 'secondary' | 'positive' | 'negative'
   icon: string
   forceText?: boolean
+  label: string
 }>()
 
 const { mobile } = useDisplay()
@@ -29,7 +30,7 @@ const { mobile } = useDisplay()
     class="my-2"
     :variant="variant === 'secondary' ? 'tonal' : 'elevated'"
   >
-    <slot />
+    {{ label }}
   </v-btn>
   <v-btn
     v-else
@@ -46,5 +47,6 @@ const { mobile } = useDisplay()
             : ''
     "
     :variant="variant === 'secondary' ? 'tonal' : 'elevated'"
+    :aria-label="label"
   />
 </template>

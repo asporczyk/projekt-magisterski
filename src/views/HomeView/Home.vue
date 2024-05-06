@@ -51,6 +51,7 @@ const handleOpenShare = () => {
     <StickyFloatingButton
       v-if="!isGuest"
       icon="mdi-share"
+      :label="t('share')"
       @click="handleOpenShare"
     />
     <ShareModal
@@ -67,11 +68,13 @@ const handleOpenShare = () => {
   {
     "en": {
       "welcome": "Hello, how are you feeling today? Enter measurements.",
-      "welcome-guest": "Hello, check shared measurements."
+      "welcome-guest": "Hello, check shared measurements.",
+      "share": "Share"
     },
     "pl": {
       "welcome": "Dzień dobry, jak się dziś czujesz? Wprowadź pomiary.",
-      "welcome-guest": "Dzień dobry, sprawdź udostępnione pomiary."
+      "welcome-guest": "Dzień dobry, sprawdź udostępnione pomiary.",
+      "share": "Udostępnij"
     }
   }
 </i18n>

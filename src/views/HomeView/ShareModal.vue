@@ -49,7 +49,10 @@ const copyLink = () => {
 }
 </script>
 <template>
-  <CenteredModal @on-close="$emit('close')">
+  <CenteredModal
+    @on-close="$emit('close')"
+    :aria-label="t('share-medical-data')"
+  >
     <template #title>
       <HeadlineS>{{ t('share-medical-data') }}</HeadlineS>
     </template>
@@ -68,10 +71,9 @@ const copyLink = () => {
           icon="mdi-content-copy"
           variant="secondary"
           force-text
+          :label="t('copy-link')"
           @click="copyLink"
-        >
-          {{ t('copy-link') }}
-        </TextButtonWithIcon>
+        />
       </div>
     </template>
   </CenteredModal>

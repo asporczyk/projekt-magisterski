@@ -67,10 +67,9 @@ let headers = computed(() => {
       icon="mdi-plus"
       class="ml-auto"
       variant="positive"
+      :label="t('add-measurement')"
       @click="$emit('addMeasurement')"
-    >
-      {{ t('add-measurement') }}
-    </TextButtonWithIcon>
+    />
   </div>
   <v-data-table
     :items="measurementData"
