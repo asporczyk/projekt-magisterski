@@ -2,15 +2,13 @@
 import { useDisplay } from 'vuetify'
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { variant } = defineProps<{
   fullWidth?: boolean
   variant?: 'primary' | 'secondary' | 'positive' | 'negative'
   icon: string
   forceText?: boolean
   label: string
 }>()
-
-const { variant } = props
 
 const color = computed(() => {
   switch (variant) {

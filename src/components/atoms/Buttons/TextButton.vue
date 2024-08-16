@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const props = defineProps<{
+const { variant } = defineProps<{
   fullWidth?: boolean
   variant?: 'primary' | 'secondary' | 'positive' | 'negative'
   loading?: boolean
 }>()
-
-const { variant } = props
 
 const color = computed(() => {
   switch (variant) {
