@@ -1,17 +1,32 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+
+const props = defineProps<{
   fullWidth?: boolean
-  variant?: 'primary' | 'secondary' | 'positive'
+  variant?: 'primary' | 'secondary' | 'positive' | 'negative'
 }>()
+
+const { variant } = props
+
+const color = computed(() => {
+  switch (variant) {
+    case 'primary':
+      return 'primary'
+    case 'secondary':
+      return ''
+    case 'positive':
+      return 'green'
+    case 'negative':
+      return 'red'
+  }
+})
 </script>
 <template>
   <v-btn
     :max-width="!fullWidth ? '300px' : ''"
     :width="fullWidth ? '100%' : ''"
     rounded="lg"
-    :color="
-      variant === 'primary' ? 'primary' : variant === 'positive' ? 'green' : ''
-    "
+    :color="color"
     class="my-2"
     variant="text"
   >
